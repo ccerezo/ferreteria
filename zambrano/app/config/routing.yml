@@ -1,0 +1,5 @@
+fz_pagina:
+    resource: "@fzPaginaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
