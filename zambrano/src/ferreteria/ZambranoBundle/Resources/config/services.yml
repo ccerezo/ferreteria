@@ -1,0 +1,7 @@
+parameters:
+#    ferreteria_zambrano.example.class: ferreteria\ZambranoBundle\Example
+
+services:
+#    ferreteria_zambrano.example:
+#        class: %ferreteria_zambrano.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

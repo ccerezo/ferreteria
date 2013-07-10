@@ -1,0 +1,3 @@
+ferreteria_zambrano_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ferreteriaZambranoBundle:Default:index }

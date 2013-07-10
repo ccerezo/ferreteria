@@ -1,6 +1,6 @@
 <?php
 
-namespace fz\PaginaBundle\Tests\Controller;
+namespace ferreteria\ZambranoBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

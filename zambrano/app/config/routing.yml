@@ -1,5 +1,5 @@
-fz_pagina:
-    resource: "@fzPaginaBundle/Controller/"
-    type:     annotation
+ferreteria_zambrano:
+    resource: "@ferreteriaZambranoBundle/Resources/config/routing.yml"
     prefix:   /
+
 
