@@ -1,6 +1,9 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
+{% extends 'ferreteriaZambranoBundle::layout.html.twig' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('bundles/ferreteriaZambrano/css/tablas_indice.css') }}" type="text/css" media="all" />
+{% endblock %}
+    
+{% block content %}
     <h1>Articulo</h1>
 
     <table class="record_properties">
@@ -38,20 +41,20 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('articulo') }}">
-            Back to the list
+        <a href="{{ path('articulo') }}" class="agregar">
+            Regresar
         </a>
     </li>
     <li>
-        <a href="{{ path('articulo_edit', { 'id': entity.id }) }}">
-            Edit
+        <a href="{{ path('articulo_edit', { 'id': entity.id }) }}" class="agregar">
+            Editar
         </a>
     </li>
     <li>
         <form action="{{ path('articulo_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
+            <button class="agregar" type="submit">Eliminar</button>
         </form>
     </li>
 </ul>

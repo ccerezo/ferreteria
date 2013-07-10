@@ -1,19 +1,22 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>Articulo creation</h1>
+{% extends 'ferreteriaZambranoBundle::layout.html.twig' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('bundles/ferreteriaZambrano/css/tablas_indice.css') }}" type="text/css" media="all" />
+{% endblock %}
+    
+{% block content %}
+    <h1>Crear Articulo</h1>
 
     <form action="{{ path('articulo_create') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
         <p>
-            <button type="submit">Create</button>
+            <button class="agregar" type="submit">Crear</button>
         </p>
     </form>
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('articulo') }}">
-            Back to the list
+        <a href="{{ path('articulo') }}" class="agregar">
+            Regresar
         </a>
     </li>
 </ul>
