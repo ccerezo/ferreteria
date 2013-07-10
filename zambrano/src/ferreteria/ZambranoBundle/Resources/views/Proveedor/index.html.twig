@@ -1,11 +1,14 @@
-{% extends '::base.html.twig' %}
+{% extends 'ferreteriaZambranoBundle::layout.html.twig' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('bundles/ferreteriaZambrano/css/tablas_indice.css') }}" type="text/css" media="all" />
+{% endblock %}
+    
+{% block content %}
+    <h1>Lista de Proveedores</h1>
 
-{% block body -%}
-    <h1>Proveedor list</h1>
-
-    <table class="records_list">
+    <table class="records_list tabla">
         <thead>
-            <tr>
+            <tr class="tbHeader1">
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Telefono</th>
@@ -15,18 +18,18 @@
         </thead>
         <tbody>
         {% for entity in entities %}
-            <tr>
+            <tr class="tbSubHeader1">
                 <td><a href="{{ path('proveedor_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.nombre }}</td>
                 <td>{{ entity.telefono }}</td>
                 <td>{{ entity.direccion }}</td>
                 <td>
                 <ul>
-                    <li>
+                    <!--<li>
                         <a href="{{ path('proveedor_show', { 'id': entity.id }) }}">show</a>
-                    </li>
+                    </li>-->
                     <li>
-                        <a href="{{ path('proveedor_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('proveedor_edit', { 'id': entity.id }) }}">Editar</a>
                     </li>
                 </ul>
                 </td>
@@ -37,8 +40,8 @@
 
         <ul>
         <li>
-            <a href="{{ path('proveedor_new') }}">
-                Create a new entry
+            <a href="{{ path('proveedor_new') }}" class="agregar">
+                Crear Proveedor
             </a>
         </li>
     </ul>
