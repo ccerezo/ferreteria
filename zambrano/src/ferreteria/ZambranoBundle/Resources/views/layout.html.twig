@@ -1,0 +1,62 @@
+{# empty Twig template #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Ferreteria Zambrano{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('bundles/ferreteriaZambrano/css/layout.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/ferreteriaZambrano/css/menu.css') }}" type="text/css" media="all" />
+        {% block css %}{% endblock %}
+        {% block js %}{% endblock %}
+    </head>
+    <body>
+        <div id="cabecera_color">
+            <p class="titulo">Ferreteria Zambrano</p>
+            <div class="logo" onclick="window.location.href = "></div>
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_COLABORADOR')%}
+                <div class="logout">
+                    <a href="{{ path('logout') }}">Logout</a>
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="ubicacion_menu">
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_COLABORADOR')%}
+        <ul id="menu-bar">
+                    <li><a href="{{path('articulo')}}">Artículo</a>
+                    </li>
+                    
+                    <li><a href="{{path('proveedor')}}">Proveedor</a>
+                    </li>
+                    
+                    <li><a href="#">Ventas</a>
+
+                    </li>
+                    
+                    <li><a href="#">Inventario</a>
+                    </li>
+                    
+                    <li><a href="{{path('user')}}">Usuario</a>
+
+                    </li>
+            </ul>
+            {% endif %}
+        </div>
+        <div id="contenedor_fondo">    
+            <div class="contenedor">
+                 
+            
+                    {% block content %}                     
+                    {% endblock %}
+                  
+            </div>
+        </div>
+        <div id="footer_color">
+                 <footer>
+                    <p>Ferretería Zambrano - Software Engineering</p>
+                    <p>Carlos Cerezo | Diana Panchana | Adriana Rodriguez | Erick Buendia </p>
+                    <p>Developers</p>
+                 </footer>
+        </div>
+    </body>
+</html>

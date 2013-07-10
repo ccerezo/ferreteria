@@ -1,0 +1,43 @@
+/* 
+    Document   : inicio
+    Created on : 29/06/2013, 01:01:29 PM
+    Author     : Antenas
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.informacion{
+    background: none repeat scroll 0 0 #3D7784;
+    border-radius: 8px 8px 0 0;
+    clear: both;
+    color: #FFFFFF;
+    font-size: 1.1em;
+    margin: 25px auto;
+    padding: 5px;
+    text-align: center;
+    width: auto;
+}
+.cuadro_bienvenida{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #999999;
+    border-radius: 8px 8px 8px 8px;
+    border-width: 2px;
+    box-shadow: 0 0 5px #000000;
+    color: #333333;
+    font-family: "Khmer UI";
+    font-size: 0.9em;
+    margin: 100px auto;
+    padding: 0 0 1em;
+    position: relative;
+    width: 30%;
+}
+.cuadro_bienvenida p{
+    margin: 10px;
+}
+.menu_principal{
+    margin: 10px auto;
+}

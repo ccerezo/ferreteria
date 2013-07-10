@@ -1,3 +1,15 @@
 ferreteria_zambrano_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: ferreteriaZambranoBundle:Default:index }
+
+
+proyecto:
+    resource: "@ferreteriaZambranoBundle/Controller/"
+    prefix: /
+    type: annotation
+
+login_check:
+    pattern: /login_check
+ 
+logout:
+    pattern: /logout

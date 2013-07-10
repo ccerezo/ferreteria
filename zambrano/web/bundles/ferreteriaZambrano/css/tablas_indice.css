@@ -1,0 +1,106 @@
+/* 
+    Document   : tablas_indice
+    Created on : 26/06/2013, 10:20:27 AM
+    Author     : Antenas
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.tablas{
+    clear: both;
+    margin: 0;
+}
+.tabla{
+    background: #FFFFFF;
+    color: #333377;
+    font-size:11px;
+    padding: 6px;
+    margin: 3px auto;
+    border:2px groove #C8C8F2;
+    line-height: 1.5em;
+    white-space: nowrap;
+    font-family: verdana,arial,helvetica,sans-serif;
+}
+.tbHeader1{
+    background: #AAAAFF;
+    color: #FFFFFF;
+    font-size:12px;
+    font-weight: bold;
+    padding: 6px;
+    border:2px groove #C8C8F2;
+    line-height: 1.5em;
+    white-space: nowrap;
+    font-family: verdana,arial,helvetica,sans-serif;
+} 
+.tbSubHeader1{
+    background: #CCCCFF;
+    color: #191970;
+    font-size:11px;
+    font-weight: bold;
+    padding: 6px;
+    border:2px groove #C8C8F2;
+    line-height: 1.5em;
+    white-space: nowrap;
+    font-family: verdana,arial,helvetica,sans-serif;
+} 
+table,td,th{
+    text-align: center;
+}
+table{
+    width:100%;
+}
+th{
+    height:40px;
+}
+.estilocelda{
+    background: none repeat scroll 0 0 #3D7784;
+    border-radius: 8px 8px 0 0;
+    clear: both;
+    color: #FFFFFF;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 2px auto;
+    padding: 5px;
+    text-align: center;
+    width: 98%;
+}
+ul{
+    padding: 0;
+}
+ul li{
+    list-style: none;
+    float: left;
+    margin: 0px 10px;
+}
+.agregar{
+    background:-moz-linear-gradient(#f9f9f9 0%,#DADADA 100%);
+    background:-ms-linear-gradient(#f9f9f9 0%,#DADADA 100%);
+    background:-o-linear-gradient(#f9f9f9 0%,#DADADA 100%);
+    background:-webkit-linear-gradient(#f9f9f9 0%,#DADADA 100%);
+    background:linear-gradient(#f9f9f9 0%,#DADADA 100%);
+    border:solid 1px #DEDEDE;
+    border-radius:5px;
+    text-align:center;
+    padding:5px;
+    color:#333;
+    width:75px;
+}
+.agregar:hover{
+    background:-moz-linear-gradient(#fff 0%,#DEDEDE 100%);
+    color:#999;
+} 
+a:link{   
+    text-decoration:none;   
+} 
+label{
+    width: 100px;
+    float: left;
+    margin: 5px 0px;
+}
+input{
+    width: 140px;
+    margin: 5px 0px;
+}
