@@ -1,0 +1,23 @@
+{% extends 'ferreteriaZambranoBundle::layout.html.twig' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('bundles/ferreteriaZambrano/css/tablas_indice.css') }}" type="text/css" media="all" />
+{% endblock %}
+    
+{% block content %}
+    <h1>Crear Usuario</h1>
+
+    <form action="{{ path('user_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button class="agregar" type="submit">Crear</button>
+        </p>
+    </form>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('user') }}" class="agregar">
+            Regresar
+        </a>
+    </li>
+</ul>
+{% endblock %}

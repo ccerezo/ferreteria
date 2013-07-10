@@ -1,0 +1,55 @@
+{% extends 'fzpaginaBundle::layout.html.twig' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('bundles/ferreteriaZambrano/css/tablas_indice.css') }}" type="text/css" media="all" />
+{% endblock %}
+    
+{% block content %}
+    
+    <h1>Lista de Articulos</h1>
+
+    <table class="records_list tabla">
+        <thead>
+            <tr class="tbHeader1">
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Marca</th>
+                <th>Preciocompra</th>
+                <th>Precionventa</th>
+                <th>Cantidad</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr class="tbSubHeader1"> 
+                <td><a href="{{ path('articulo_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.descripcion }}</td>
+                <td>{{ entity.marca }}</td>
+                <td>{{ entity.precioCompra }}</td>
+                <td>{{ entity.precionVenta }}</td>
+                <td>{{ entity.cantidad }}</td>
+                <td>
+                <ul>
+                    <!--<li>
+                        <a href="{{ path('articulo_show', { 'id': entity.id }) }}">show</a>
+                    </li>-->
+                    <li>
+                        <a href="{{ path('articulo_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('articulo_new') }}" class="agregar">
+                Crear Artículo
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
