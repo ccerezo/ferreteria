@@ -485,6 +485,90 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
+            if (0 === strpos($pathinfo, '/inicio/ventas')) {
+                // ventas
+                if (rtrim($pathinfo, '/') === '/inicio/ventas') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_ventas;
+                    }
+
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'ventas');
+                    }
+
+                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::indexAction',  '_route' => 'ventas',);
+                }
+                not_ventas:
+
+                // ventas_create
+                if ($pathinfo === '/inicio/ventas/') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_ventas_create;
+                    }
+
+                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::createAction',  '_route' => 'ventas_create',);
+                }
+                not_ventas_create:
+
+                // ventas_new
+                if ($pathinfo === '/inicio/ventas/new') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_ventas_new;
+                    }
+
+                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::newAction',  '_route' => 'ventas_new',);
+                }
+                not_ventas_new:
+
+                // ventas_show
+                if (preg_match('#^/inicio/ventas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_ventas_show;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'ventas_show')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::showAction',));
+                }
+                not_ventas_show:
+
+                // ventas_edit
+                if (preg_match('#^/inicio/ventas/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_ventas_edit;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'ventas_edit')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::editAction',));
+                }
+                not_ventas_edit:
+
+                // ventas_update
+                if (preg_match('#^/inicio/ventas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'PUT') {
+                        $allow[] = 'PUT';
+                        goto not_ventas_update;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'ventas_update')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::updateAction',));
+                }
+                not_ventas_update:
+
+                // ventas_delete
+                if (preg_match('#^/inicio/ventas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'DELETE') {
+                        $allow[] = 'DELETE';
+                        goto not_ventas_delete;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'ventas_delete')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::deleteAction',));
+                }
+                not_ventas_delete:
+
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/log')) {

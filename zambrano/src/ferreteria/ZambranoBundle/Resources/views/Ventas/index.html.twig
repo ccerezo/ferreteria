@@ -1,7 +1,10 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>Ventas list</h1>
+{% extends 'ferreteriaZambranoBundle::layout.html.twig' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('bundles/ferreteriaZambrano/css/tablas_indice.css') }}" type="text/css" media="all" />
+{% endblock %}
+    
+{% block content %}
+    <h1>Ventas</h1>
 
     <table class="records_list">
         <thead>
@@ -40,7 +43,7 @@
         <ul>
         <li>
             <a href="{{ path('ventas_new') }}">
-                Create a new entry
+                Generar Venta
             </a>
         </li>
     </ul>

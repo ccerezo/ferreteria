@@ -81,7 +81,10 @@ class __TwigTemplate_0589b0db44ca329d5a255491033dce46 extends Twig_Template
             echo "\">Proveedor</a>
                     </li>
                     
-                    <li><a href=\"#\">Ventas</a>
+                    <li><a href=\"";
+            // line 32
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ventas"), "html", null, true);
+            echo "\">Ventas</a>
 
                     </li>
                     
@@ -157,6 +160,6 @@ class __TwigTemplate_0589b0db44ca329d5a255491033dce46 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  142 => 49,  137 => 10,  132 => 9,  126 => 6,  110 => 51,  108 => 49,  101 => 44,  93 => 39,  80 => 29,  74 => 26,  69 => 24,  64 => 21,  58 => 18,  55 => 17,  46 => 11,  43 => 10,  41 => 9,  37 => 8,  33 => 7,  23 => 2,  71 => 25,  65 => 20,  63 => 19,  53 => 16,  47 => 9,  42 => 6,  39 => 5,  32 => 3,  29 => 6,);
+        return array (  145 => 49,  140 => 10,  135 => 9,  129 => 6,  113 => 51,  111 => 49,  104 => 44,  96 => 39,  86 => 32,  80 => 29,  74 => 26,  71 => 25,  69 => 24,  64 => 21,  58 => 18,  55 => 17,  53 => 16,  46 => 11,  43 => 10,  41 => 9,  37 => 8,  33 => 7,  29 => 6,  23 => 2,);
     }
 }
