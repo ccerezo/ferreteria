@@ -52,58 +52,63 @@ class __TwigTemplate_010fa67562e4ba275f5f094a7be64a57 extends Twig_Template
                 <th>Preciocompra</th>
                 <th>Precionventa</th>
                 <th>Cantidad</th>
+                <th>Proveedor</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         ";
-        // line 24
+        // line 25
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getContext($context, "entities"));
         foreach ($context['_seq'] as $context["_key"] => $context["entity"]) {
-            // line 25
+            // line 26
             echo "            <tr class=\"tbSubHeader1\"> 
                 <td><a href=\"";
-            // line 26
+            // line 27
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("articulo_show", array("id" => $this->getAttribute($this->getContext($context, "entity"), "id"))), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "id"), "html", null, true);
             echo "</a></td>
                 <td>";
-            // line 27
+            // line 28
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "nombre"), "html", null, true);
             echo "</td>
                 <td>";
-            // line 28
+            // line 29
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "descripcion"), "html", null, true);
             echo "</td>
                 <td>";
-            // line 29
+            // line 30
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "marca"), "html", null, true);
             echo "</td>
                 <td>";
-            // line 30
+            // line 31
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "precioCompra"), "html", null, true);
             echo "</td>
                 <td>";
-            // line 31
+            // line 32
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "precionVenta"), "html", null, true);
             echo "</td>
                 <td>";
-            // line 32
+            // line 33
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "cantidad"), "html", null, true);
+            echo "</td>
+                <td>";
+            // line 34
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "proveedor"), "html", null, true);
             echo "</td>
                 <td>
                 <ul>
                     <!--<li>
                         <a href=\"";
-            // line 36
+            // line 38
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("articulo_show", array("id" => $this->getAttribute($this->getContext($context, "entity"), "id"))), "html", null, true);
             echo "\">show</a>
                     </li>-->
                     <li>
                         <a href=\"";
-            // line 39
+            // line 41
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("articulo_edit", array("id" => $this->getAttribute($this->getContext($context, "entity"), "id"))), "html", null, true);
             echo "\">edit</a>
                     </li>
@@ -115,14 +120,14 @@ class __TwigTemplate_010fa67562e4ba275f5f094a7be64a57 extends Twig_Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['entity'], $context['_parent'], $context['loop']);
         $context = array_merge($_parent, array_intersect_key($context, $_parent));
-        // line 45
+        // line 47
         echo "        </tbody>
     </table>
 
         <ul>
         <li>
             <a href=\"";
-        // line 50
+        // line 52
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("articulo_new"), "html", null, true);
         echo "\" class=\"agregar\">
                 Crear Artículo
@@ -144,6 +149,6 @@ class __TwigTemplate_010fa67562e4ba275f5f094a7be64a57 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  126 => 50,  119 => 45,  107 => 39,  101 => 36,  94 => 32,  90 => 31,  86 => 30,  82 => 29,  78 => 28,  74 => 27,  68 => 26,  65 => 25,  61 => 24,  42 => 7,  39 => 6,  32 => 3,  29 => 2,);
+        return array (  131 => 52,  124 => 47,  112 => 41,  106 => 38,  99 => 34,  95 => 33,  91 => 32,  87 => 31,  83 => 30,  79 => 29,  75 => 28,  69 => 27,  66 => 26,  62 => 25,  42 => 7,  39 => 6,  32 => 3,  29 => 2,);
     }
 }

@@ -211,4 +211,27 @@ class Articulo
     {
         return $this->cantidad;
     }
+
+    
+    /*private $venta;
+    public function setVenta(\ferreteria\ZambranoBundle\Entity\Ventas $venta)
+    {
+        $this->venta = $venta;
+    }
+
+    public function getVenta()
+    {
+        return $this->venta;
+    }*/
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Proveedor", inversedBy="articulos")
+     * @ORM\JoinColumn(name="proveedor_id", referencedColumnName="id")
+     * @return integer
+     */
+    public $proveedor;
+
+    public function __toString(){
+        return $this->proveedor;
+     }
 }

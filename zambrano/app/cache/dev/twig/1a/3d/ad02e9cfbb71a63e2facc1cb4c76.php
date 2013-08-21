@@ -39,7 +39,7 @@ class __TwigTemplate_1a3dad02e9cfbb71a63e2facc1cb4c76 extends Twig_Template
     public function block_content($context, array $blocks = array())
     {
         // line 7
-        echo "    <h1>Ventas list</h1>
+        echo "    <h1>Ventas</h1>
 
     <table class=\"records_list\">
         <thead>
@@ -116,7 +116,7 @@ class __TwigTemplate_1a3dad02e9cfbb71a63e2facc1cb4c76 extends Twig_Template
         // line 45
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ventas_new"), "html", null, true);
         echo "\">
-                Create a new entry
+                Generar Venta
             </a>
         </li>
     </ul>

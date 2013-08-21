@@ -51,6 +51,7 @@ class __TwigTemplate_e580a3264c45dc9f70aedff8eef3f7dc extends Twig_Template
         // line 10
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getContext($context, "form"), 'widget');
         echo "
+      
 
         <p>
             <button type=\"submit\">Create</button>
@@ -60,10 +61,10 @@ class __TwigTemplate_e580a3264c45dc9f70aedff8eef3f7dc extends Twig_Template
         <ul class=\"record_actions\">
     <li>
         <a href=\"";
-        // line 19
+        // line 20
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ventas"), "html", null, true);
         echo "\">
-            Back to the list
+            Regresar
         </a>
     </li>
 </ul>
@@ -82,6 +83,6 @@ class __TwigTemplate_e580a3264c45dc9f70aedff8eef3f7dc extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  64 => 19,  52 => 10,  46 => 9,  42 => 7,  39 => 6,  32 => 3,  29 => 2,);
+        return array (  65 => 20,  52 => 10,  46 => 9,  42 => 7,  39 => 6,  32 => 3,  29 => 2,);
     }
 }

@@ -121,4 +121,27 @@ class Proveedor
     {
         return $this->direccion;
     }
+    
+    public function __toString(){
+         return $this->nombre;
+    }
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Articulo", mappedBy="proveedor")
+     */
+    private $articulo;
+    public function __construct()
+    {
+        $this->articulo = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    public function addArticulo(\ferreteria\ZambranoBundle\Entity\Articulo $articulos)
+    {
+        $this->articulo[] = $articulos;
+    }
+
+    public function getArticulo()
+    {
+        return $this->articulo;
+    }
+
 }

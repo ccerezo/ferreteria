@@ -16,7 +16,8 @@ class ArticuloType extends AbstractType
             ->add('marca')
             ->add('precioCompra')
             ->add('precionVenta')
-            ->add('cantidad')
+            ->add('cantidad')    
+            ->add('proveedor',null,array('required' => true))
         ;
     }
 
