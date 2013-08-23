@@ -8,11 +8,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-/**
- * Inicio controller.
- *
- * @Route("/inicio")
- */
+
 class InicioController extends Controller{
    
     /*******************************************************************				
@@ -23,10 +19,7 @@ class InicioController extends Controller{
     *Autor:  Carlos Cerezo							
     *											
     *************************************************************************/
-    /**
-     * @Route("/", name="inicio")
-     * @Template()
-     */
+
     public function indexAction(){
        return $this->render('ferreteriaZambranoBundle:Inicio:index.html.twig');
     }

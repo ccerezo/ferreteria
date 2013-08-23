@@ -152,6 +152,10 @@ class Ventas
         return $this->total;
     }
     
+    public function __toString(){
+         return $this->codigo;
+    }
+    
      /**
      * @ORM\OneToMany(targetEntity="Articulo", mappedBy="venta")
      */

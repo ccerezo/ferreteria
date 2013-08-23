@@ -13,7 +13,7 @@ use ferreteria\ZambranoBundle\Form\ProveedorType;
 /**
  * Proveedor controller.
  *
- * @Route("/inicio/proveedor")
+ * @Route("/proveedor")
  */
 class ProveedorController extends Controller
 {

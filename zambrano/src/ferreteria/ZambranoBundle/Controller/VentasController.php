@@ -13,7 +13,7 @@ use ferreteria\ZambranoBundle\Form\VentasType;
 /**
  * Ventas controller.
  *
- * @Route("/inicio/ventas")
+ * @Route("/ventas")
  */
 class VentasController extends Controller
 {

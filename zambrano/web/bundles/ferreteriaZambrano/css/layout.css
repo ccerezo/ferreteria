@@ -89,3 +89,11 @@ footer {
     color: #FFFFFF;
     font-family: 'Raleway',cursive;
 }
+.login1{
+    float: right;
+    margin: 10px 50px;
+}
+.login1 a{
+    color: #FFFFFF;
+    font-family: 'Raleway',cursive;
+}

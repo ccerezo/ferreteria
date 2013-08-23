@@ -4,14 +4,14 @@
 {% endblock %}
     
 {% block content %}
-    <h1>Ventas creation</h1>
+    <h1>Venta</h1>
 
     <form action="{{ path('ventas_create') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
       
 
         <p>
-            <button type="submit">Create</button>
+            <button type="submit">Crear Venta</button>
         </p>
     </form>
 

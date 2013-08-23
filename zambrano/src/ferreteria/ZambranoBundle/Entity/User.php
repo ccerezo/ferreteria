@@ -152,10 +152,10 @@
         */
         public function addRole(\ferreteria\ZambranoBundle\Entity\Role $userRoles)
         {
-        $this->user_roles[] = $userRoles;
+            $this->user_roles[] = $userRoles;
         }
         public function setUserRoles($roles) {
-        $this->user_roles = $roles;
+            $this->user_roles = $roles;
         }
         /**
         * Get user_roles
@@ -173,7 +173,7 @@
         */
         public function getRoles()
         {
-        return $this->user_roles->toArray(); //IMPORTANTE: el mecanismo de seguridad de Sf2 requiere ésto como un array
+            return $this->user_roles->toArray(); //IMPORTANTE: el mecanismo de seguridad de Sf2 requiere ésto como un array
         }
         /**
         * Compares this user to another to determine if they are the same.
@@ -182,7 +182,7 @@
         * @return boolean True if equal, false othwerwise.
         */
         public function equals(UserInterface $user) {
-        return md5($this->getUsername()) == md5($user->getUsername());
+            return md5($this->getUsername()) == md5($user->getUsername());
         }
         /**
         * Erases the user credentials.
@@ -213,11 +213,10 @@ public function unserialize($serialized)
 }
 
 public function __toString() {
-return $this->getUsername();
+    return $this->getUsername();
 }
        
       
-
        
     }
 ?>

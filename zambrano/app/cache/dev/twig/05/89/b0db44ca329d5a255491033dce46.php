@@ -47,7 +47,10 @@ class __TwigTemplate_0589b0db44ca329d5a255491033dce46 extends Twig_Template
     <body>
         <div id=\"cabecera_color\">
             <p class=\"titulo\">Ferreteria Zambrano</p>
-            <div class=\"logo\" onclick=\"window.location.href = \"></div>
+            <div class=\"logo\" onclick=\"window.location.href ='";
+        // line 15
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("inicio"), "html", null, true);
+        echo "' \"></div>
             ";
         // line 16
         if (($this->env->getExtension('security')->isGranted("ROLE_ADMIN") || $this->env->getExtension('security')->isGranted("ROLE_COLABORADOR"))) {
@@ -58,31 +61,42 @@ class __TwigTemplate_0589b0db44ca329d5a255491033dce46 extends Twig_Template
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("logout"), "html", null, true);
             echo "\">Logout</a>
                 </div>
+                ";
+        } else {
+            // line 21
+            echo "                <div class=\"login1\">
+                    <a href=\"";
+            // line 22
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("login"), "html", null, true);
+            echo "\">Login!</a>
+                </div>
+                
             ";
         }
-        // line 21
-        echo "        </div>
+        // line 26
+        echo "            
+        </div>
         
         <div class=\"ubicacion_menu\">
             ";
-        // line 24
+        // line 30
         if (($this->env->getExtension('security')->isGranted("ROLE_ADMIN") || $this->env->getExtension('security')->isGranted("ROLE_COLABORADOR"))) {
-            // line 25
+            // line 31
             echo "        <ul id=\"menu-bar\">
                     <li><a href=\"";
-            // line 26
+            // line 32
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("articulo"), "html", null, true);
             echo "\">Artículo</a>
                     </li>
                     
                     <li><a href=\"";
-            // line 29
+            // line 35
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("proveedor"), "html", null, true);
             echo "\">Proveedor</a>
                     </li>
                     
                     <li><a href=\"";
-            // line 32
+            // line 38
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ventas"), "html", null, true);
             echo "\">Ventas</a>
 
@@ -92,7 +106,7 @@ class __TwigTemplate_0589b0db44ca329d5a255491033dce46 extends Twig_Template
                     </li>
                     
                     <li><a href=\"";
-            // line 39
+            // line 45
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("user"), "html", null, true);
             echo "\">Usuario</a>
 
@@ -100,16 +114,16 @@ class __TwigTemplate_0589b0db44ca329d5a255491033dce46 extends Twig_Template
             </ul>
             ";
         }
-        // line 44
+        // line 50
         echo "        </div>
         <div id=\"contenedor_fondo\">    
             <div class=\"contenedor\">
                  
             
                     ";
-        // line 49
+        // line 55
         $this->displayBlock('content', $context, $blocks);
-        // line 51
+        // line 57
         echo "                  
             </div>
         </div>
@@ -141,7 +155,7 @@ class __TwigTemplate_0589b0db44ca329d5a255491033dce46 extends Twig_Template
     {
     }
 
-    // line 49
+    // line 55
     public function block_content($context, array $blocks = array())
     {
         echo "                     
@@ -160,6 +174,6 @@ class __TwigTemplate_0589b0db44ca329d5a255491033dce46 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  145 => 49,  140 => 10,  135 => 9,  129 => 6,  113 => 51,  111 => 49,  104 => 44,  96 => 39,  86 => 32,  80 => 29,  74 => 26,  71 => 25,  69 => 24,  64 => 21,  58 => 18,  55 => 17,  53 => 16,  46 => 11,  43 => 10,  41 => 9,  37 => 8,  33 => 7,  29 => 6,  23 => 2,);
+        return array (  159 => 55,  154 => 10,  149 => 9,  143 => 6,  127 => 57,  125 => 55,  118 => 50,  110 => 45,  100 => 38,  94 => 35,  88 => 32,  85 => 31,  83 => 30,  77 => 26,  70 => 22,  67 => 21,  61 => 18,  58 => 17,  56 => 16,  52 => 15,  46 => 11,  43 => 10,  41 => 9,  37 => 8,  33 => 7,  29 => 6,  23 => 2,);
     }
 }

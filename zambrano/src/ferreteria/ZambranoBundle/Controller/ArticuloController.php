@@ -13,7 +13,7 @@ use ferreteria\ZambranoBundle\Form\ArticuloType;
 /**
  * Articulo controller.
  *
- * @Route("/inicio/articulo")
+ * @Route("/articulo")
  */
 class ArticuloController extends Controller
 {

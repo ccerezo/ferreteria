@@ -47,6 +47,7 @@ class __TwigTemplate_1a3dad02e9cfbb71a63e2facc1cb4c76 extends Twig_Template
                 <th>Id</th>
                 <th>Codigo</th>
                 <th>Fecha</th>
+                
                 <th>Subtotal</th>
                 <th>Total</th>
                 <th>Actions</th>
@@ -54,47 +55,48 @@ class __TwigTemplate_1a3dad02e9cfbb71a63e2facc1cb4c76 extends Twig_Template
         </thead>
         <tbody>
         ";
-        // line 21
+        // line 22
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getContext($context, "entities"));
         foreach ($context['_seq'] as $context["_key"] => $context["entity"]) {
-            // line 22
+            // line 23
             echo "            <tr>
                 <td><a href=\"";
-            // line 23
+            // line 24
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ventas_show", array("id" => $this->getAttribute($this->getContext($context, "entity"), "id"))), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "id"), "html", null, true);
             echo "</a></td>
                 <td>";
-            // line 24
+            // line 25
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "codigo"), "html", null, true);
             echo "</td>
                 <td>";
-            // line 25
+            // line 26
             if ($this->getAttribute($this->getContext($context, "entity"), "fecha")) {
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "fecha"), "Y-m-d H:i:s"), "html", null, true);
             }
             echo "</td>
+                
                 <td>";
-            // line 26
+            // line 28
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "subtotal"), "html", null, true);
             echo "</td>
                 <td>";
-            // line 27
+            // line 29
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "total"), "html", null, true);
             echo "</td>
                 <td>
                 <ul>
                     <li>
                         <a href=\"";
-            // line 31
+            // line 33
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ventas_show", array("id" => $this->getAttribute($this->getContext($context, "entity"), "id"))), "html", null, true);
             echo "\">show</a>
                     </li>
                     <li>
                         <a href=\"";
-            // line 34
+            // line 36
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ventas_edit", array("id" => $this->getAttribute($this->getContext($context, "entity"), "id"))), "html", null, true);
             echo "\">edit</a>
                     </li>
@@ -106,14 +108,14 @@ class __TwigTemplate_1a3dad02e9cfbb71a63e2facc1cb4c76 extends Twig_Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['entity'], $context['_parent'], $context['loop']);
         $context = array_merge($_parent, array_intersect_key($context, $_parent));
-        // line 40
+        // line 42
         echo "        </tbody>
     </table>
 
         <ul>
         <li>
             <a href=\"";
-        // line 45
+        // line 47
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ventas_new"), "html", null, true);
         echo "\">
                 Generar Venta
@@ -135,6 +137,6 @@ class __TwigTemplate_1a3dad02e9cfbb71a63e2facc1cb4c76 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  117 => 45,  110 => 40,  98 => 34,  92 => 31,  85 => 27,  81 => 26,  75 => 25,  71 => 24,  65 => 23,  62 => 22,  58 => 21,  42 => 7,  39 => 6,  32 => 3,  29 => 2,);
+        return array (  119 => 47,  112 => 42,  100 => 36,  94 => 33,  87 => 29,  83 => 28,  76 => 26,  72 => 25,  66 => 24,  63 => 23,  59 => 22,  42 => 7,  39 => 6,  32 => 3,  29 => 2,);
     }
 }

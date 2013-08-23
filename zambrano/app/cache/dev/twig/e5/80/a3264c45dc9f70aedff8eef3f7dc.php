@@ -39,7 +39,7 @@ class __TwigTemplate_e580a3264c45dc9f70aedff8eef3f7dc extends Twig_Template
     public function block_content($context, array $blocks = array())
     {
         // line 7
-        echo "    <h1>Ventas creation</h1>
+        echo "    <h1>Venta</h1>
 
     <form action=\"";
         // line 9
@@ -54,7 +54,7 @@ class __TwigTemplate_e580a3264c45dc9f70aedff8eef3f7dc extends Twig_Template
       
 
         <p>
-            <button type=\"submit\">Create</button>
+            <button type=\"submit\">Crear Venta</button>
         </p>
     </form>
 

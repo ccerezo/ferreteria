@@ -25,79 +25,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         $allow = array();
         $pathinfo = rawurldecode($pathinfo);
 
-        // _welcome
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', '_welcome');
-            }
-
-            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\WelcomeController::indexAction',  '_route' => '_welcome',);
-        }
-
-        if (0 === strpos($pathinfo, '/demo')) {
-            if (0 === strpos($pathinfo, '/demo/secured')) {
-                if (0 === strpos($pathinfo, '/demo/secured/log')) {
-                    if (0 === strpos($pathinfo, '/demo/secured/login')) {
-                        // _demo_login
-                        if ($pathinfo === '/demo/secured/login') {
-                            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::loginAction',  '_route' => '_demo_login',);
-                        }
-
-                        // _security_check
-                        if ($pathinfo === '/demo/secured/login_check') {
-                            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::securityCheckAction',  '_route' => '_security_check',);
-                        }
-
-                    }
-
-                    // _demo_logout
-                    if ($pathinfo === '/demo/secured/logout') {
-                        return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::logoutAction',  '_route' => '_demo_logout',);
-                    }
-
-                }
-
-                if (0 === strpos($pathinfo, '/demo/secured/hello')) {
-                    // acme_demo_secured_hello
-                    if ($pathinfo === '/demo/secured/hello') {
-                        return array (  'name' => 'World',  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloAction',  '_route' => 'acme_demo_secured_hello',);
-                    }
-
-                    // _demo_secured_hello
-                    if (preg_match('#^/demo/secured/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => '_demo_secured_hello')), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloAction',));
-                    }
-
-                    // _demo_secured_hello_admin
-                    if (0 === strpos($pathinfo, '/demo/secured/hello/admin') && preg_match('#^/demo/secured/hello/admin/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => '_demo_secured_hello_admin')), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloadminAction',));
-                    }
-
-                }
-
-            }
-
-            // _demo
-            if (rtrim($pathinfo, '/') === '/demo') {
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', '_demo');
-                }
-
-                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::indexAction',  '_route' => '_demo',);
-            }
-
-            // _demo_hello
-            if (0 === strpos($pathinfo, '/demo/hello') && preg_match('#^/demo/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => '_demo_hello')), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::helloAction',));
-            }
-
-            // _demo_contact
-            if ($pathinfo === '/demo/contact') {
-                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::contactAction',  '_route' => '_demo_contact',);
-            }
-
-        }
-
         if (0 === strpos($pathinfo, '/_')) {
             // _wdt
             if (0 === strpos($pathinfo, '/_wdt') && preg_match('#^/_wdt/(?P<token>[^/]++)$#s', $pathinfo, $matches)) {
@@ -211,99 +138,96 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'ferreteria_zambrano_homepage')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\DefaultController::indexAction',));
         }
 
-        if (0 === strpos($pathinfo, '/inicio')) {
-            if (0 === strpos($pathinfo, '/inicio/articulo')) {
-                // articulo
-                if (rtrim($pathinfo, '/') === '/inicio/articulo') {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_articulo;
-                    }
-
-                    if (substr($pathinfo, -1) !== '/') {
-                        return $this->redirect($pathinfo.'/', 'articulo');
-                    }
-
-                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::indexAction',  '_route' => 'articulo',);
-                }
-                not_articulo:
-
-                // articulo_create
-                if ($pathinfo === '/inicio/articulo/') {
-                    if ($this->context->getMethod() != 'POST') {
-                        $allow[] = 'POST';
-                        goto not_articulo_create;
-                    }
-
-                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::createAction',  '_route' => 'articulo_create',);
-                }
-                not_articulo_create:
-
-                // articulo_new
-                if ($pathinfo === '/inicio/articulo/new') {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_articulo_new;
-                    }
-
-                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::newAction',  '_route' => 'articulo_new',);
-                }
-                not_articulo_new:
-
-                // articulo_show
-                if (preg_match('#^/inicio/articulo/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_articulo_show;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'articulo_show')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::showAction',));
-                }
-                not_articulo_show:
-
-                // articulo_edit
-                if (preg_match('#^/inicio/articulo/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_articulo_edit;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'articulo_edit')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::editAction',));
-                }
-                not_articulo_edit:
-
-                // articulo_update
-                if (preg_match('#^/inicio/articulo/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if ($this->context->getMethod() != 'PUT') {
-                        $allow[] = 'PUT';
-                        goto not_articulo_update;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'articulo_update')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::updateAction',));
-                }
-                not_articulo_update:
-
-                // articulo_delete
-                if (preg_match('#^/inicio/articulo/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if ($this->context->getMethod() != 'DELETE') {
-                        $allow[] = 'DELETE';
-                        goto not_articulo_delete;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'articulo_delete')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::deleteAction',));
-                }
-                not_articulo_delete:
-
+        // inicio
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'inicio');
             }
 
-            // inicio
-            if (rtrim($pathinfo, '/') === '/inicio') {
+            return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\InicioController::indexAction',  '_route' => 'inicio',);
+        }
+
+        if (0 === strpos($pathinfo, '/articulo')) {
+            // articulo
+            if (rtrim($pathinfo, '/') === '/articulo') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_articulo;
+                }
+
                 if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'inicio');
+                    return $this->redirect($pathinfo.'/', 'articulo');
                 }
 
-                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\InicioController::indexAction',  '_route' => 'inicio',);
+                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::indexAction',  '_route' => 'articulo',);
             }
+            not_articulo:
+
+            // articulo_create
+            if ($pathinfo === '/articulo/') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_articulo_create;
+                }
+
+                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::createAction',  '_route' => 'articulo_create',);
+            }
+            not_articulo_create:
+
+            // articulo_new
+            if ($pathinfo === '/articulo/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_articulo_new;
+                }
+
+                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::newAction',  '_route' => 'articulo_new',);
+            }
+            not_articulo_new:
+
+            // articulo_show
+            if (preg_match('#^/articulo/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_articulo_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'articulo_show')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::showAction',));
+            }
+            not_articulo_show:
+
+            // articulo_edit
+            if (preg_match('#^/articulo/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_articulo_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'articulo_edit')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::editAction',));
+            }
+            not_articulo_edit:
+
+            // articulo_update
+            if (preg_match('#^/articulo/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'PUT') {
+                    $allow[] = 'PUT';
+                    goto not_articulo_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'articulo_update')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::updateAction',));
+            }
+            not_articulo_update:
+
+            // articulo_delete
+            if (preg_match('#^/articulo/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_articulo_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'articulo_delete')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ArticuloController::deleteAction',));
+            }
+            not_articulo_delete:
 
         }
 
@@ -316,258 +240,255 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\LoginController::indexAction',  '_route' => 'login',);
         }
 
-        if (0 === strpos($pathinfo, '/inicio')) {
-            if (0 === strpos($pathinfo, '/inicio/proveedor')) {
-                // proveedor
-                if (rtrim($pathinfo, '/') === '/inicio/proveedor') {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_proveedor;
-                    }
-
-                    if (substr($pathinfo, -1) !== '/') {
-                        return $this->redirect($pathinfo.'/', 'proveedor');
-                    }
-
-                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::indexAction',  '_route' => 'proveedor',);
+        if (0 === strpos($pathinfo, '/proveedor')) {
+            // proveedor
+            if (rtrim($pathinfo, '/') === '/proveedor') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_proveedor;
                 }
-                not_proveedor:
 
-                // proveedor_create
-                if ($pathinfo === '/inicio/proveedor/') {
-                    if ($this->context->getMethod() != 'POST') {
-                        $allow[] = 'POST';
-                        goto not_proveedor_create;
-                    }
-
-                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::createAction',  '_route' => 'proveedor_create',);
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'proveedor');
                 }
-                not_proveedor_create:
 
-                // proveedor_new
-                if ($pathinfo === '/inicio/proveedor/new') {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_proveedor_new;
-                    }
-
-                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::newAction',  '_route' => 'proveedor_new',);
-                }
-                not_proveedor_new:
-
-                // proveedor_show
-                if (preg_match('#^/inicio/proveedor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_proveedor_show;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'proveedor_show')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::showAction',));
-                }
-                not_proveedor_show:
-
-                // proveedor_edit
-                if (preg_match('#^/inicio/proveedor/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_proveedor_edit;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'proveedor_edit')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::editAction',));
-                }
-                not_proveedor_edit:
-
-                // proveedor_update
-                if (preg_match('#^/inicio/proveedor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if ($this->context->getMethod() != 'PUT') {
-                        $allow[] = 'PUT';
-                        goto not_proveedor_update;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'proveedor_update')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::updateAction',));
-                }
-                not_proveedor_update:
-
-                // proveedor_delete
-                if (preg_match('#^/inicio/proveedor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if ($this->context->getMethod() != 'DELETE') {
-                        $allow[] = 'DELETE';
-                        goto not_proveedor_delete;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'proveedor_delete')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::deleteAction',));
-                }
-                not_proveedor_delete:
-
+                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::indexAction',  '_route' => 'proveedor',);
             }
+            not_proveedor:
 
-            if (0 === strpos($pathinfo, '/inicio/user')) {
-                // user
-                if (rtrim($pathinfo, '/') === '/inicio/user') {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_user;
-                    }
-
-                    if (substr($pathinfo, -1) !== '/') {
-                        return $this->redirect($pathinfo.'/', 'user');
-                    }
-
-                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::indexAction',  '_route' => 'user',);
+            // proveedor_create
+            if ($pathinfo === '/proveedor/') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_proveedor_create;
                 }
-                not_user:
 
-                // user_create
-                if ($pathinfo === '/inicio/user/') {
-                    if ($this->context->getMethod() != 'POST') {
-                        $allow[] = 'POST';
-                        goto not_user_create;
-                    }
-
-                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::createAction',  '_route' => 'user_create',);
-                }
-                not_user_create:
-
-                // user_new
-                if ($pathinfo === '/inicio/user/new') {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_user_new;
-                    }
-
-                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::newAction',  '_route' => 'user_new',);
-                }
-                not_user_new:
-
-                // user_show
-                if (preg_match('#^/inicio/user/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_user_show;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_show')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::showAction',));
-                }
-                not_user_show:
-
-                // user_edit
-                if (preg_match('#^/inicio/user/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_user_edit;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_edit')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::editAction',));
-                }
-                not_user_edit:
-
-                // user_update
-                if (preg_match('#^/inicio/user/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if ($this->context->getMethod() != 'PUT') {
-                        $allow[] = 'PUT';
-                        goto not_user_update;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_update')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::updateAction',));
-                }
-                not_user_update:
-
-                // user_delete
-                if (preg_match('#^/inicio/user/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if ($this->context->getMethod() != 'DELETE') {
-                        $allow[] = 'DELETE';
-                        goto not_user_delete;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_delete')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::deleteAction',));
-                }
-                not_user_delete:
-
+                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::createAction',  '_route' => 'proveedor_create',);
             }
+            not_proveedor_create:
 
-            if (0 === strpos($pathinfo, '/inicio/ventas')) {
-                // ventas
-                if (rtrim($pathinfo, '/') === '/inicio/ventas') {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_ventas;
-                    }
-
-                    if (substr($pathinfo, -1) !== '/') {
-                        return $this->redirect($pathinfo.'/', 'ventas');
-                    }
-
-                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::indexAction',  '_route' => 'ventas',);
+            // proveedor_new
+            if ($pathinfo === '/proveedor/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_proveedor_new;
                 }
-                not_ventas:
 
-                // ventas_create
-                if ($pathinfo === '/inicio/ventas/') {
-                    if ($this->context->getMethod() != 'POST') {
-                        $allow[] = 'POST';
-                        goto not_ventas_create;
-                    }
-
-                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::createAction',  '_route' => 'ventas_create',);
-                }
-                not_ventas_create:
-
-                // ventas_new
-                if ($pathinfo === '/inicio/ventas/new') {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_ventas_new;
-                    }
-
-                    return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::newAction',  '_route' => 'ventas_new',);
-                }
-                not_ventas_new:
-
-                // ventas_show
-                if (preg_match('#^/inicio/ventas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_ventas_show;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'ventas_show')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::showAction',));
-                }
-                not_ventas_show:
-
-                // ventas_edit
-                if (preg_match('#^/inicio/ventas/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('GET', 'HEAD'));
-                        goto not_ventas_edit;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'ventas_edit')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::editAction',));
-                }
-                not_ventas_edit:
-
-                // ventas_update
-                if (preg_match('#^/inicio/ventas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if ($this->context->getMethod() != 'PUT') {
-                        $allow[] = 'PUT';
-                        goto not_ventas_update;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'ventas_update')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::updateAction',));
-                }
-                not_ventas_update:
-
-                // ventas_delete
-                if (preg_match('#^/inicio/ventas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if ($this->context->getMethod() != 'DELETE') {
-                        $allow[] = 'DELETE';
-                        goto not_ventas_delete;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'ventas_delete')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::deleteAction',));
-                }
-                not_ventas_delete:
-
+                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::newAction',  '_route' => 'proveedor_new',);
             }
+            not_proveedor_new:
+
+            // proveedor_show
+            if (preg_match('#^/proveedor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_proveedor_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'proveedor_show')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::showAction',));
+            }
+            not_proveedor_show:
+
+            // proveedor_edit
+            if (preg_match('#^/proveedor/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_proveedor_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'proveedor_edit')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::editAction',));
+            }
+            not_proveedor_edit:
+
+            // proveedor_update
+            if (preg_match('#^/proveedor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'PUT') {
+                    $allow[] = 'PUT';
+                    goto not_proveedor_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'proveedor_update')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::updateAction',));
+            }
+            not_proveedor_update:
+
+            // proveedor_delete
+            if (preg_match('#^/proveedor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_proveedor_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'proveedor_delete')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\ProveedorController::deleteAction',));
+            }
+            not_proveedor_delete:
+
+        }
+
+        if (0 === strpos($pathinfo, '/user')) {
+            // user
+            if (rtrim($pathinfo, '/') === '/user') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_user;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'user');
+                }
+
+                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::indexAction',  '_route' => 'user',);
+            }
+            not_user:
+
+            // user_create
+            if ($pathinfo === '/user/') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_user_create;
+                }
+
+                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::createAction',  '_route' => 'user_create',);
+            }
+            not_user_create:
+
+            // user_new
+            if ($pathinfo === '/user/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_user_new;
+                }
+
+                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::newAction',  '_route' => 'user_new',);
+            }
+            not_user_new:
+
+            // user_show
+            if (preg_match('#^/user/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_user_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_show')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::showAction',));
+            }
+            not_user_show:
+
+            // user_edit
+            if (preg_match('#^/user/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_user_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_edit')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::editAction',));
+            }
+            not_user_edit:
+
+            // user_update
+            if (preg_match('#^/user/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'PUT') {
+                    $allow[] = 'PUT';
+                    goto not_user_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_update')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::updateAction',));
+            }
+            not_user_update:
+
+            // user_delete
+            if (preg_match('#^/user/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_user_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_delete')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\UserController::deleteAction',));
+            }
+            not_user_delete:
+
+        }
+
+        if (0 === strpos($pathinfo, '/ventas')) {
+            // ventas
+            if (rtrim($pathinfo, '/') === '/ventas') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_ventas;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'ventas');
+                }
+
+                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::indexAction',  '_route' => 'ventas',);
+            }
+            not_ventas:
+
+            // ventas_create
+            if ($pathinfo === '/ventas/') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_ventas_create;
+                }
+
+                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::createAction',  '_route' => 'ventas_create',);
+            }
+            not_ventas_create:
+
+            // ventas_new
+            if ($pathinfo === '/ventas/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_ventas_new;
+                }
+
+                return array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::newAction',  '_route' => 'ventas_new',);
+            }
+            not_ventas_new:
+
+            // ventas_show
+            if (preg_match('#^/ventas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_ventas_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'ventas_show')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::showAction',));
+            }
+            not_ventas_show:
+
+            // ventas_edit
+            if (preg_match('#^/ventas/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_ventas_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'ventas_edit')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::editAction',));
+            }
+            not_ventas_edit:
+
+            // ventas_update
+            if (preg_match('#^/ventas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'PUT') {
+                    $allow[] = 'PUT';
+                    goto not_ventas_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'ventas_update')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::updateAction',));
+            }
+            not_ventas_update:
+
+            // ventas_delete
+            if (preg_match('#^/ventas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_ventas_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'ventas_delete')), array (  '_controller' => 'ferreteria\\ZambranoBundle\\Controller\\VentasController::deleteAction',));
+            }
+            not_ventas_delete:
 
         }
 

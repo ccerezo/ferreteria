@@ -13,7 +13,7 @@ use ferreteria\ZambranoBundle\Form\UserType;
 /**
  * User controller.
  *
- * @Route("/inicio/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {

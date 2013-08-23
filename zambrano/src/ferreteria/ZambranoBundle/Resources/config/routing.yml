@@ -2,7 +2,10 @@ ferreteria_zambrano_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: ferreteriaZambranoBundle:Default:index }
 
-
+inicio:
+    pattern: /
+    defaults: { _controller: ferreteriaZambranoBundle:Inicio:index }
+    
 proyecto:
     resource: "@ferreteriaZambranoBundle/Controller/"
     prefix: /

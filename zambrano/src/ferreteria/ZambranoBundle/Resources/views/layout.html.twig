@@ -12,12 +12,18 @@
     <body>
         <div id="cabecera_color">
             <p class="titulo">Ferreteria Zambrano</p>
-            <div class="logo" onclick="window.location.href = "></div>
+            <div class="logo" onclick="window.location.href ='{{ path('inicio') }}' "></div>
             {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_COLABORADOR')%}
                 <div class="logout">
                     <a href="{{ path('logout') }}">Logout</a>
                 </div>
+                {% else %}
+                <div class="login1">
+                    <a href="{{path('login')}}">Login!</a>
+                </div>
+                
             {% endif %}
+            
         </div>
         
         <div class="ubicacion_menu">
